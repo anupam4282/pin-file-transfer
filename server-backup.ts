@@ -23,7 +23,7 @@ import {
 } from './server/rateLimiter.ts';
 import fs from 'fs';
 
-const PORT = Number(process.env.PORT) || 3000;
+const PORT = 3000;
 const MAX_FILE_SIZE_MB = 50; // 50 MB
 
 // Setup Multer for secure uploads with temp storage
