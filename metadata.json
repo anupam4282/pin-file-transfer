@@ -1,0 +1,6 @@
+{
+  "name": "PIN File Transfer",
+  "description": "Secure cross-device file sharing using 6-digit PINs without any login or account requirement.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
