@@ -21,6 +21,7 @@ import { UploadModal } from './components/UploadModal';
 import { FileCard } from './components/FileCard';
 import { SecurityNotice } from './components/SecurityNotice';
 import { FileMetadata, AccessResponse } from './types';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 export default function App() {
   const [searchPin, setSearchPin] = useState<string>('');
@@ -86,7 +87,9 @@ export default function App() {
     setErrorMessage(null);
 
     try {
-      const res = await fetch('/api/files/access', {
+      const API_URL = import.meta.env.VITE_API_URL || '';
+
+const res = await fetch(`${API_URL}/api/files/access`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pin: pinToSearch })

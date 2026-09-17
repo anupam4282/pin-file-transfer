@@ -20,6 +20,7 @@ import confetti from 'canvas-confetti';
 import { PinInput } from './PinInput';
 import { formatBytes, getFileIcon, generateSecurePin } from '../lib/fileUtils';
 import { FileMetadata, UploadResponse } from '../types';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 interface UploadModalProps {
   isOpen: boolean;
@@ -133,7 +134,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
         });
       }, 150);
 
-      const res = await fetch('/api/files/upload', {
+      const res = await fetch(`${API_URL}/api/files/upload`, {
         method: 'POST',
         body: formData,
       });

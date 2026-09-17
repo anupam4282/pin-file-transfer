@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { FileMetadata } from '../types';
 import { formatBytes, formatDate, formatTimeRemaining, getFileIcon } from '../lib/fileUtils';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 interface FileCardProps {
   file: FileMetadata;
@@ -41,7 +42,7 @@ export const FileCard: React.FC<FileCardProps> = ({
   const [previewOpen, setPreviewOpen] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const downloadUrl = `/api/files/${file.id}/download?token=${encodeURIComponent(accessToken || '')}&pin=${encodeURIComponent(pin)}`;
+  const downloadUrl = `${API_URL}/api/files/${file.id}/download?token=${encodeURIComponent(accessToken || '')}&pin=${encodeURIComponent(pin)}`;
 
   const handleDownload = () => {
     setIsDownloading(true);
@@ -63,7 +64,7 @@ export const FileCard: React.FC<FileCardProps> = ({
     setErrorMessage(null);
 
     try {
-      const res = await fetch(`/api/files/${file.id}`, {
+      const res = await fetch(`${API_URL}/api/files/${file.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

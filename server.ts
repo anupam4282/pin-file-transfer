@@ -1,3 +1,4 @@
+import cors from 'cors';
 import 'dotenv/config';
 import express from 'express';
 import path from 'path';
@@ -52,6 +53,11 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function startServer() {
   const app = express();
+  app.use(cors({
+  origin: process.env.FRONTEND_URL || '*',
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
   // Basic middlewares
   app.use(express.json({ limit: '10mb' }));
